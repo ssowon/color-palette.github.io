@@ -1,0 +1,28 @@
+{
+  "name": "color-palette.github.io",
+  "version": "1.0.0",
+  "description": "assignment : <b>색상 조합의 가이드</b>를 제공하는 컬러팔레트\r <br><br><br>\r <h1><b>COTD</b> (Color Of The Day)</h1>",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ssowon/color-palette.github.io.git"
+  },
+  "author": "wish",
+  "license": "ISC",
+  "scripts": {
+    "dev": "nodemon"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.18.10",
+    "@babel/core": "^7.19.1",
+    "@babel/node": "^7.19.1",
+    "@babel/preset-env": "^7.19.1",
+    "nodemon": "^2.0.20"
+  },
+  "dependencies": {
+    "axios": "^0.27.2",
+    "dotenv": "^16.0.2",
+    "ejs": "^3.1.8",
+    "express": "^4.18.1",
+    "node-fetch": "^2.6.7"
+  }
+}
