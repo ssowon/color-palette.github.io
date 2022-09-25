@@ -52,8 +52,8 @@ function setSRange(code) {
     return Math.floor(( Math.random() * (100 - 30) + 30) );
   } else if(code <= 800) {
     // clear, atposphere
-    return Math.floor(( Math.random() * (55 - 45) + 45 ) );
-  } else if(code < 900) {
+    return Math.floor(( Math.random() * (100 - 80) + 80 ) );
+  } else if(code < 900) { 
     // Clouds
     return Math.floor(Math.random() * 60);
   } else {
