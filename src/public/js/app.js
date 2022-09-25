@@ -4,7 +4,8 @@ const item1Name = document.querySelector(".item1 .color .name");
 const item2 = document.querySelector(".item2");
 const item2Name = document.querySelector(".item2 .color .name");
 
-let color1, color2 = '';
+let color1 = '#FF5A36';
+let color2 = '#3659FF';
 
 function hslToHex(h, s, l) {
   l /= 100;
@@ -28,8 +29,8 @@ function setColor(weather) {
 
   item1.style.backgroundColor = `hsl(${h1},${s1}%,${l1}%)`;
   item2.style.backgroundColor = `hsl(${h2},${s2}%,${l2}%)`;
-  color1 = hslToHex(h1,s1,l1);
-  color2 = hslToHex(h2,s2,l2);
+  color1 = hslToHex(100,50,50);
+  color2 = hslToHex(200,50,50);
   item1Name.innerText = `${color1}`;
   item2Name.innerText = `${color2}`;
 }
@@ -41,7 +42,7 @@ function onGeoOk(position) {
   axios({
     method: "post", // 통신 방식
     // url: "/weather", // 서버
-    url: "src/server.js/weather", // 서버
+    url: "https://ssowon.github.io/color-palette.github.io/src/server.js/weather", // 서버
     params: {
       lat: lat,
       lon: lon
@@ -58,6 +59,9 @@ function onGeoOk(position) {
 function onGeoError() {
   alert("Can't find you. No weather for you.");
 }
+
+item1.style.backgroundColor = `#FF5A36`;
+item2.style.backgroundColor = `#3659FF`;
 
 navigator.geolocation.getCurrentPosition(onGeoOk,onGeoError);
 item1.addEventListener('click', (e) => {

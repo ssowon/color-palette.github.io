@@ -35,7 +35,6 @@ function getWeatherData(res, lat, lon) {
 }
 
 app.post('/weather', (req, res)=>{
-  console.log(req.query);
   const lat = req.query.lat;
   const lon = req.query.lon;
 
