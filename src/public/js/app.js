@@ -40,7 +40,8 @@ function onGeoOk(position) {
 
   axios({
     method: "post", // 통신 방식
-    url: "/weather", // 서버
+    // url: "/weather", // 서버
+    url: "src/server.js/weather", // 서버
     params: {
       lat: lat,
       lon: lon
