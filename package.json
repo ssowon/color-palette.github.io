@@ -8,7 +8,10 @@
   },
   "author": "wish",
   "license": "ISC",
+  "homepage": "https://ssowon.github.io/color-palette.github.io/",
   "scripts": {
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d buile",
     "dev": "nodemon"
   },
   "devDependencies": {
@@ -23,6 +26,7 @@
     "dotenv": "^16.0.2",
     "ejs": "^3.1.8",
     "express": "^4.18.1",
+    "gh-pages": "^4.0.0",
     "node-fetch": "^2.6.7"
   }
 }
