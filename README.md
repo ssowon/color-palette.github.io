@@ -10,3 +10,5 @@ Main Idea : 날씨에 어울리는 색조합 제공(착장 또는 메이크업�
 <li>Change color randomly</li>
 <li>Copy color number</li>
 <li>Recommend similar color</li>
+
+weather code reference : https://injunech.tistory.com/178

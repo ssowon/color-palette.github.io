@@ -1,8 +1,25 @@
+/*
+weather code 
+2xx : Thunderstorm
+3xx : drizzle
+5xx : rain
+6xx : snow
+7xx : atposphere
+800 : clear
+8xx : Clouds
+9xx : extreme
+*/
+
+let weatherCode = 800;
 const weather = document.querySelector(".weather");
+
 const item1 = document.querySelector(".item1");
 const item1Name = document.querySelector(".item1 .color .name");
+const refresh1 = document.querySelector(".refresh1");
+
 const item2 = document.querySelector(".item2");
 const item2Name = document.querySelector(".item2 .color .name");
+const refresh2 = document.querySelector(".refresh2");
 
 let color1 = '#FF5A36';
 let color2 = '#3659FF';
@@ -18,21 +35,69 @@ function hslToHex(h, s, l) {
   return `#${f(0)}${f(8)}${f(4)}`;
 }
 
-function setColor(weather) {
-  console.log(weather);
-  const h1 = Math.floor(Math.random() * 360);
-  const h2 = Math.floor(Math.random() * 360);
-  const s1 = Math.floor(Math.random() * 100);
-  const s2 = Math.floor(Math.random() * 100);
-  const l1 = Math.floor(Math.random() * 100);
-  const l2 = Math.floor(Math.random() * 100);
+function setSRange(code) {
+  if(code < 300) {
+    // Thunderstorm 형광
+    return Math.floor(( Math.random() * (100 - 90) + 90));
+  } else if(code < 500) {
+    // drizzle
+    return Math.floor(( Math.random() * (60 - 40) + 40));
+  } else if(code < 600) {
+    // rain
+    return Math.floor(Math.random() * 60);
+  } else if(code < 700) {
+    // snow
+    return Math.floor(( Math.random() * (100 - 30) + 30) );
+  } else if(code <= 800) {
+    // clear, atposphere
+    return Math.floor(( Math.random() * (55 - 45) + 45 ) );
+  } else if(code < 900) {
+    // Clouds
+    return Math.floor(Math.random() * 60);
+  } else {
+    // extreme
+    return Math.floor(Math.random() * 100);
+  }
+}
+function setLRange(code) {
+  if(code < 300) {
+    // Thunderstorm
+    return Math.floor(( Math.random() * (60 - 50) + 50 ) );
+  } else if(code < 500) {
+    // drizzle
+    return Math.floor(( Math.random() * (80 - 30) + 30 ) );
+  } else if(code < 600) {
+    // rain
+    return Math.floor(Math.random() * 70);
+  } else if(code < 700) {
+    // snow
+    return Math.floor(( Math.random() * (100 - 30) + 30) );
+  } else if(code <= 800) {
+    // clear, atposphere
+    return Math.floor(( Math.random() * (55 - 45) + 45 ) );
+  } else if(code < 900) {
+    // Clouds
+    return Math.floor(Math.random() * 100);
+  } else {
+    // extreme
+    return Math.floor(Math.random() * 100);
+  }
+}
 
-  item1.style.backgroundColor = `hsl(${h1},${s1}%,${l1}%)`;
-  item2.style.backgroundColor = `hsl(${h2},${s2}%,${l2}%)`;
-  color1 = hslToHex(100,50,50);
-  color2 = hslToHex(200,50,50);
-  item1Name.innerText = `${color1}`;
-  item2Name.innerText = `${color2}`;
+function setColor(num) {
+  const h = Math.floor(Math.random() * 360);
+  const s = setSRange(weatherCode);
+  const l = setLRange(weatherCode);
+
+  if(num == 1) {
+    item1.style.backgroundColor = `hsl(${h},${s}%,${l}%)`;
+    color1 = hslToHex(h,s,l);
+    item1Name.innerText = `${color1}`;
+  } else {
+    item2.style.backgroundColor = `hsl(${h},${s}%,${l}%)`;
+    color2 = hslToHex(h,s,l);
+    item2Name.innerText = `${color2}`;
+  }
 }
 
 function onGeoOk(position) {
@@ -41,8 +106,8 @@ function onGeoOk(position) {
 
   axios({
     method: "post", // 통신 방식
-    // url: "/weather", // 서버
-    url: "https://ssowon.github.io/color-palette.github.io/src/server.js/weather", // 서버
+    url: "/weather", // 서버
+    // url: "https://ssowon.github.io/color-palette.github.io/src/server.js/weather", // 서버
     params: {
       lat: lat,
       lon: lon
@@ -50,8 +115,10 @@ function onGeoOk(position) {
   })
   .then((res)=>{
     const weatherData = res.data.weather[0].main;
+    weatherCode = res.data.weather[0].id
     weather.innerText = `Weather : ${weatherData}`;
-    setColor(weatherData)
+    setColor(1)
+    setColor(2)
   })
 
 
@@ -64,6 +131,7 @@ item1.style.backgroundColor = `#FF5A36`;
 item2.style.backgroundColor = `#3659FF`;
 
 navigator.geolocation.getCurrentPosition(onGeoOk,onGeoError);
+
 item1.addEventListener('click', (e) => {
   navigator.clipboard.writeText(color1);
   alert(color1)
@@ -71,4 +139,11 @@ item1.addEventListener('click', (e) => {
 item2.addEventListener('click', (e) => {
   navigator.clipboard.writeText(color2);
   alert(color2)
+});
+
+refresh1.addEventListener('click', (e) => {
+  setColor(1)
+});
+refresh2.addEventListener('click', (e) => {
+  setColor(2)
 });
