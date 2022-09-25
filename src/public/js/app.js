@@ -15,10 +15,12 @@ const weather = document.querySelector(".weather");
 
 const item1 = document.querySelector(".item1");
 const item1Name = document.querySelector(".item1 .color .name");
+const item1Copy = document.querySelector(".item1 .color .copy");
 const refresh1 = document.querySelector(".refresh1");
 
 const item2 = document.querySelector(".item2");
 const item2Name = document.querySelector(".item2 .color .name");
+const item2Copy = document.querySelector(".item2 .color .copy");
 const refresh2 = document.querySelector(".refresh2");
 
 let color1 = '#FF5A36';
@@ -133,12 +135,18 @@ item2.style.backgroundColor = `#3659FF`;
 navigator.geolocation.getCurrentPosition(onGeoOk,onGeoError);
 
 item1.addEventListener('click', (e) => {
+  item1Copy.innerText = '✔';
+  setTimeout(() => {
+    item1Copy.innerText = '📋';
+  }, 1000)
   navigator.clipboard.writeText(color1);
-  alert(color1)
 });
 item2.addEventListener('click', (e) => {
+  item2Copy.innerText = '✔';
+  setTimeout(() => {
+    item2Copy.innerText = '📋';
+  }, 1000)
   navigator.clipboard.writeText(color2);
-  alert(color2)
 });
 
 refresh1.addEventListener('click', (e) => {

@@ -51,10 +51,13 @@ main {
   color: white;
   font-weight: bolder;
   cursor: pointer;
+  animation-duration: 1s;
+  animation-name: fade_in;
 }
 
 .grid-container > div:hover .color{
   border: 2px solid white;
+  transition: all 0.5s;
 }
 
 .grid-container > div:hover .color .copy {
@@ -67,6 +70,7 @@ main {
 
 .copy {
   display: none;
+  padding-top: 22px;
 }
 
 .weather { 
@@ -85,4 +89,17 @@ main {
   text-align: center;
   font-size: 3em;
   cursor: pointer;
+}
+
+@keyframes fade_in {
+  from {
+      margin-top:2%;
+      opacity: 0.5;
+    }
+  
+    to {
+      display:block;
+      margin-top:0%;
+      opacity: 1;
+    }
 }
