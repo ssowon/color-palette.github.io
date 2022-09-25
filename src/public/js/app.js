@@ -23,3 +23,6 @@ function onGeoError() {
 }
 
 navigator.geolocation.getCurrentPosition(onGeoOk,onGeoError);
+var link =  document.location.href;
+console.log(link);
+
